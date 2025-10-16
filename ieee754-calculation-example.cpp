@@ -27,9 +27,12 @@ uint8_t const bias = 127U;
  */
 float ieee_754(uint32_t const data) {
     float value;
-    // This will fail the tests. Students should do the proper IEEE-754 calculation per assignment
-    // using the 32 bit 'data' value passed into this function.
     value = 1.23;
+
+    float sign = data >> 31;
+    float exp_minus_bias = ((data << 1) >> 24) - bias;
+
+
     return value;
 }
 
