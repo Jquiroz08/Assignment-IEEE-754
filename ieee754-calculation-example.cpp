@@ -20,28 +20,29 @@ uint8_t const exp_width = 8U;
 uint8_t const mantissa_width = width - exp_width - 1;
 uint8_t const bias = 127U;
 
-/*
- * *** STUDENTS SHOULD WRITE CODE FOR THIS FUNCTION ***
- * Students should create or add any data structures needed.
- * Students should create or add any functions or classes they may need.
- */
 float ieee_754(uint32_t const data) {
+    
     float value;
-
+    
+    // Gets the rightmost bit value
     float sign = data >> 31;
   
+    // Gets the exponent value
     float exp = (data << 1) >> 24 ;
    
+    // Gets the mantissa value 
     float mant = data & 0x007FFFFF;
 
+    // Converts mantissa to its decimal value by dividing by 2^23
     float dec = mant / (1 << 23);
 
-    value = pow(-1,sign) * pow(2,exp - bias);
+    // Common value between normalized and denormalized
+    value = pow(-1, sign) * pow(2, exp - bias);
 
-
-    if(exp == 0 && dec != 0){
+    // Decides if normalized or denormialized
+    if (exp == 0 && dec != 0) {
         value *= dec;
-    }else{
+    } else{
         value *= (dec + 1);
     }
 
