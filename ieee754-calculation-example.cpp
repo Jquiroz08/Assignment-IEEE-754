@@ -30,7 +30,11 @@ float ieee_754(uint32_t const data) {
     value = 1.23;
 
     float sign = data >> 31;
+  
     float exp_minus_bias = ((data << 1) >> 24) - bias;
+   
+    float mant = data & 0x007FFFFF;
+   
 
 
     return value;
