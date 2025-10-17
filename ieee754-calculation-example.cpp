@@ -34,6 +34,10 @@ float ieee_754(uint32_t const data) {
     float exp_minus_bias = ((data << 1) >> 24) - bias;
    
     float mant = data & 0x007FFFFF;
+
+    float dec = mant / (1 << 23);
+
+   value = pow(-1,sign) * (1+dec) * pow(2,exp_minus_bias);
    
 
 
